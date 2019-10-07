@@ -36,7 +36,7 @@ func main() {
 	// Set the handler for ICE connection state
 	// This will notify you when the peer has connected/disconnected
 	// peerConnection.OnICEConnectionStateChange(func(connectionState webrtc.ICEConnectionState) {
-		// fmt.Printf("Connection State has changed %s \n", connectionState.String())
+	// 	fmt.Printf("Connection State has changed %s \n", connectionState.String())
 	// })
 
 	// Create a audio track
@@ -92,7 +92,7 @@ func main() {
 	}
 
 	// Output the answer in base64 so we can paste it in browser
-  fmt.Println("TOKEN_START_" + signal.Encode(answer) + "_TOKEN_END")
+  fmt.Println(signal.Encode(answer))
 
 	// Start pushing buffers on these tracks
 	gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc).Start()
