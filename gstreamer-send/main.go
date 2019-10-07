@@ -35,9 +35,9 @@ func main() {
 
 	// Set the handler for ICE connection state
 	// This will notify you when the peer has connected/disconnected
-	// peerConnection.OnICEConnectionStateChange(func(connectionState webrtc.ICEConnectionState) {
+	peerConnection.OnICEConnectionStateChange(func(connectionState webrtc.ICEConnectionState) {
 	// 	fmt.Printf("Connection State has changed %s \n", connectionState.String())
-	// })
+	})
 
 	// Create a audio track
 	audioTrack, err := peerConnection.NewTrack(webrtc.DefaultPayloadTypeOpus, rand.Uint32(), "audio", "pion1")
