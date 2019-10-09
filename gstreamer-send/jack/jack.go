@@ -76,7 +76,8 @@ func StartGstreamer(browserToken string) <-chan string {
       panic(err)
     }
 
-    ans, _ := fmt.Println(signal.Encode(answer))
+    // ans, _ := fmt.Println(signal.Encode(answer))
+    ans := "helllllo"
     ch <- ans
     close(ch)
 
