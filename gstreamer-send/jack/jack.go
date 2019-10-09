@@ -75,6 +75,8 @@ func StartGstreamer(browserToken string, ch chan int) {
     }
 
     ans, _ := fmt.Println(signal.Encode(answer))
+    fmt.Sprintf("AHLKSALSKDJLAKSDJ")
+    fmt.Sprintf(ans)
     ch <-ans
     close(ch)
 
