@@ -11,7 +11,7 @@ import (
   "github.com/osetinsky/example-webrtc-applications/internal/signal"
 )
 
-func StartGstreamer(browserToken string, ch chan int) {
+func StartGstreamer(browserToken string, ch chan string) {
   go func() {
 
     // gst := fmt.Sprintf(`echo %s | gstreamer-send -audio-src "jackaudiosrc ! audioconvert ! audioresample"`, t.Test)
@@ -74,10 +74,10 @@ func StartGstreamer(browserToken string, ch chan int) {
       panic(err)
     }
 
-    ans, _ := fmt.Println(signal.Encode(answer))
-    fmt.Sprintf("AHLKSALSKDJLAKSDJ")
-    fmt.Sprintf(ans)
-    ch <-ans
+    // ans, _ := fmt.Println(signal.Encode(answer))
+    // fmt.Sprintf("AHLKSALSKDJLAKSDJ")
+    // fmt.Sprintf(ans)
+    ch <-signal.Encode(answer)
     close(ch)
 
     gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc).Start()
