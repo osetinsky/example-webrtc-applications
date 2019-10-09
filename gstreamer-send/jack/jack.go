@@ -2,7 +2,7 @@ package jack
 
 import (
   "flag"
-  "fmt"
+  // "fmt"
   "math/rand"
 
   "github.com/pion/webrtc/v2"
