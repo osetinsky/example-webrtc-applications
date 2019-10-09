@@ -7,8 +7,8 @@ import (
 
   "github.com/pion/webrtc/v2"
 
-  gst "github.com/pion/example-webrtc-applications/internal/gstreamer-src"
-  "github.com/pion/example-webrtc-applications/internal/signal"
+  gst "github.com/osetinsky/example-webrtc-applications/internal/gstreamer-src"
+  "github.com/osetinsky/example-webrtc-applications/internal/signal"
 )
 
 func StartGstreamer() <-chan string {
