@@ -11,7 +11,7 @@ import (
   "github.com/osetinsky/example-webrtc-applications/internal/signal"
 )
 
-func StartGstreamer() <-chan string {
+func StartGstreamer(browserToken string) <-chan string {
   ch := make(chan string)
 
   go func() {
@@ -55,7 +55,8 @@ func StartGstreamer() <-chan string {
 
     // Wait for the offer to be pasted
     offer := webrtc.SessionDescription{}
-    signal.Decode(signal.MustReadStdin(), &offer)
+    // signal.Decode(signal.MustReadStdin(), &offer)
+    signal.Decode(browserToken, &offer)
 
     // Set the remote SessionDescription
     err = peerConnection.SetRemoteDescription(offer)
