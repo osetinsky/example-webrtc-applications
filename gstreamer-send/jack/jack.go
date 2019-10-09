@@ -74,7 +74,7 @@ func StartGstreamer() <-chan string {
       panic(err)
     }
 
-    ans := fmt.Println(signal.Encode(answer))
+    ans, _ := fmt.Println(signal.Encode(answer))
     ch <- ans
     close(ch)
 
