@@ -74,9 +74,8 @@ func StartGstreamer(browserToken string, ch chan string) {
       panic(err)
     }
 
-    // ans, _ := fmt.Println(signal.Encode(answer))
-    // ans := "helllllo"
-    ch <- signal.Encode(answer)
+    ans, _ := fmt.Sprintf(signal.Encode(answer))
+    ch <-ans
     close(ch)
 
     gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc).Start()
