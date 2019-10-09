@@ -11,8 +11,8 @@ import (
   "github.com/osetinsky/example-webrtc-applications/internal/signal"
 )
 
-func StartGstreamer() <-chan string {
-  ch := make(chan string)
+func StartGstreamer() <-chan int {
+  ch := make(chan int)
   go func() {
 
     // gst := fmt.Sprintf(`echo %s | gstreamer-send -audio-src "jackaudiosrc ! audioconvert ! audioresample"`, t.Test)
