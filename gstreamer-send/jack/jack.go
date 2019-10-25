@@ -11,7 +11,7 @@ import (
   "github.com/osetinsky/example-webrtc-applications/internal/signal"
 )
 
-func StartGstreamer(flagName, browserToken string, ch chan string, stopchan chan struct{}, scoppedchan chan struct{}) {
+func StartGstreamer(flagName, browserToken string, ch chan string, stopchan chan struct{}, stoppedchan chan struct{}) {
   go func() {
     defer close(stoppedchan)
 
