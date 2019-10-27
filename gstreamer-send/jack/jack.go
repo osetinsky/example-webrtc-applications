@@ -45,7 +45,8 @@ func StartGstreamer(flagName, browserToken string, ch chan string, stopchan chan
     // Set the handler for ICE connection state
     // This will notify you when the peer has connected/disconnected
     peerConnection.OnICEConnectionStateChange(func(connectionState webrtc.ICEConnectionState) {
-      // fmt.Printf("Connection State has changed %s \n", connectionState.String())
+      fmt.Printf("Connection State has changed %s \n", connectionState.String())
+      return
     })
 
     // Create a audio track
