@@ -12,8 +12,11 @@ import (
 )
 
 func StartGstreamer(flagName, browserToken string, ch chan string) {
+  fmt.Printf("gstreamer starting")
+
   go func() {
 
+    fmt.Printf("gstreamer starting in func")
     // gst := fmt.Sprintf(`echo %s | gstreamer-send -audio-src "jackaudiosrc ! audioconvert ! audioresample"`, t.Test)
     // audioSrc := flag.String("audio-src", "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
     audioSrc := flag.String(flagName, "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
@@ -40,7 +43,7 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
     // Set the handler for ICE connection state
     // This will notify you when the peer has connected/disconnected
     peerConnection.OnICEConnectionStateChange(func(connectionState webrtc.ICEConnectionState) {
-      // fmt.Printf("Connection State has changed %s \n", connectionState.String())
+      fmt.Printf("Connection State has changed %s \n", connectionState.String())
     })
 
     // Create a audio track
