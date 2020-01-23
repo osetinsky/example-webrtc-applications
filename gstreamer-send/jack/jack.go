@@ -2,7 +2,7 @@ package jack
 
 import (
   "flag"
-  // "fmt"
+  "fmt"
   "math/rand"
 
   "github.com/pion/webrtc/v2"
@@ -11,8 +11,13 @@ import (
   "github.com/osetinsky/example-webrtc-applications/internal/signal"
 )
 
-func StartGstreamer(flagName, browserToken string, ch chan string) {
+func StartGstreamer(flagName, browserToken string, ch chan string, stopchan chan struct{}, stoppedchan chan struct{}) {
   go func() {
+    defer close(stoppedchan)
+
+    defer func(){
+      fmt.Sprintf("Channel closed.")
+    }()
 
     // gst := fmt.Sprintf(`echo %s | gstreamer-send -audio-src "jackaudiosrc ! audioconvert ! audioresample"`, t.Test)
     // audioSrc := flag.String("audio-src", "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
@@ -82,6 +87,16 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
     gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc).Start()
 
     // Block forever
-    select {}
+    // select {}
+
+    for {
+      select {
+      default:
+        fmt.Sprintf("Waiting for close...")
+      case <-stopchan:
+        // stop
+        return
+      }
+    }
   }()
 }
