@@ -2,7 +2,7 @@ package jack
 
 import (
   "flag"
-  "fmt"
+  // "fmt"
   "math/rand"
 
   "github.com/pion/webrtc/v2"
@@ -13,9 +13,10 @@ import (
 
 func StartGstreamer(browserToken string, ch chan string) {
   go func() {
+
     // gst := fmt.Sprintf(`echo %s | gstreamer-send -audio-src "jackaudiosrc ! audioconvert ! audioresample"`, t.Test)
     audioSrc := flag.String("audio-src", "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
-    // audioSrc := flag.String("audio-src", "jackaudiosrc ! audioconvert ! audioresample")
+    // audioSrc := flag.String(flagName, "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
 
     flag.Parse()
 
@@ -39,7 +40,7 @@ func StartGstreamer(browserToken string, ch chan string) {
     // Set the handler for ICE connection state
     // This will notify you when the peer has connected/disconnected
     peerConnection.OnICEConnectionStateChange(func(connectionState webrtc.ICEConnectionState) {
-      fmt.Printf("Connection State has changed %s \n", connectionState.String())
+      // fmt.Printf("Connection State has changed %s \n", connectionState.String())
     })
 
     // Create a audio track
@@ -56,8 +57,6 @@ func StartGstreamer(browserToken string, ch chan string) {
     offer := webrtc.SessionDescription{}
     // signal.Decode(signal.MustReadStdin(), &offer)
     signal.Decode(browserToken, &offer)
-
-    fmt.Printf("BROWSER TOKEN %s \n", browserToken)
 
     // Set the remote SessionDescription
     err = peerConnection.SetRemoteDescription(offer)
@@ -77,14 +76,10 @@ func StartGstreamer(browserToken string, ch chan string) {
       panic(err)
     }
 
-    ans := fmt.Sprintf(signal.Encode(answer))
-    ch <-ans
-    close(ch)
-    // ch <-signal.Encode(answer)
+    ch <-signal.Encode(answer)
     // close(ch)
 
     gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc).Start()
-
 
     // Block forever
     select {}
