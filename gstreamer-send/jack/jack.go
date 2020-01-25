@@ -76,7 +76,7 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
       panic(err)
     }
 
-    ch <-signal.Encode(answer)
+    // ch <-signal.Encode(answer)
     // close(ch)
 
     // Output the answer in base64 so we can paste it in browser
