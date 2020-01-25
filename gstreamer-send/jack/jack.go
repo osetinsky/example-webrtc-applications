@@ -78,10 +78,10 @@ func StartGstreamer(browserToken string, ch chan string) {
       panic(err)
     }
 
+    gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc).Start()
+
     ch <-signal.Encode(answer)
     // close(ch)
-
-    gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc).Start()
 
     // Block forever
     select {}
