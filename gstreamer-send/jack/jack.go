@@ -13,7 +13,6 @@ import (
 
 func StartGstreamer(browserToken string, ch chan string) {
   go func() {
-
     // gst := fmt.Sprintf(`echo %s | gstreamer-send -audio-src "jackaudiosrc ! audioconvert ! audioresample"`, t.Test)
     audioSrc := flag.String("audio-src", "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
     // audioSrc := flag.String("audio-src", "jackaudiosrc ! audioconvert ! audioresample")
@@ -78,8 +77,11 @@ func StartGstreamer(browserToken string, ch chan string) {
       panic(err)
     }
 
-    ch <-signal.Encode(answer)
+    ans, _ := fmt.Sprintf(signal.Encode(answer))
+    ch <-ans
     close(ch)
+    // ch <-signal.Encode(answer)
+    // close(ch)
 
     gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc).Start()
 
