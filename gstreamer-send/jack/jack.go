@@ -2,7 +2,7 @@ package jack
 
 import (
   "flag"
-  // "fmt"
+  "fmt"
   "math/rand"
 
   "github.com/pion/webrtc/v2"
@@ -40,7 +40,7 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
     // Set the handler for ICE connection state
     // This will notify you when the peer has connected/disconnected
     peerConnection.OnICEConnectionStateChange(func(connectionState webrtc.ICEConnectionState) {
-      // fmt.Printf("Connection State has changed %s \n", connectionState.String())
+      fmt.Printf("Connection State has changed %s \n", connectionState.String())
     })
 
     // Create a audio track
