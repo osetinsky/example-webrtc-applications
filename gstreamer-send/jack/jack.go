@@ -7,15 +7,15 @@ import (
 
   "github.com/pion/webrtc/v2"
 
-  gst "github.com/osetinsky/example-webrtc-applications/internal/gstreamer-src"
+  // gst "github.com/osetinsky/example-webrtc-applications/internal/gstreamer-src"
   "github.com/osetinsky/example-webrtc-applications/internal/signal"
 )
 
 func StartGstreamer(browserToken string, ch chan string) {
   go func() {
 
-    // gst := fmt.Sprintf(`echo %s | gstreamer-send -audio-src "jackaudiosrc ! audioconvert ! audioresample"`, t.Test)
-    audioSrc := flag.String("audio-src", "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
+    gst := fmt.Sprintf(`echo %s | gstreamer-send -audio-src "jackaudiosrc ! audioconvert ! audioresample"`, browserToken)
+    // audioSrc := flag.String("audio-src", "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
     // audioSrc := flag.String(flagName, "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
 
     flag.Parse()
