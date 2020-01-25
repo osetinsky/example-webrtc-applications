@@ -16,7 +16,7 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
 
     // gst := fmt.Sprintf(`echo %s | gstreamer-send -audio-src "jackaudiosrc ! audioconvert ! audioresample"`, t.Test)
     // audioSrc := flag.String("audio-src", "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
-    audioSrc := flag.String(flagName, "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
+    audioSrc := flag.String(flagName, "jackaudiosrc ! audioconvert ! audioresample")
 
     flag.Parse()
 
