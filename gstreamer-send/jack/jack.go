@@ -58,6 +58,8 @@ func StartGstreamer(browserToken string, ch chan string) {
     // signal.Decode(signal.MustReadStdin(), &offer)
     signal.Decode(browserToken, &offer)
 
+    fmt.Printf("BROWSER TOKEN %s \n", browserToken)
+
     // Set the remote SessionDescription
     err = peerConnection.SetRemoteDescription(offer)
     if err != nil {
