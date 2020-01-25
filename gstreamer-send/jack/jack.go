@@ -13,7 +13,7 @@ import (
 
 func StartGstreamer(flagName, browserToken string, ch chan string) {
 
-  go func() {
+  // go func() {
     audioSrc := flag.String(flagName, "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
     flag.Parse()
 
@@ -88,5 +88,5 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
     // Block forever
     select {}
 
-  }()
+  // }()
 }
