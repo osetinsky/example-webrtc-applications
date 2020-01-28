@@ -23,8 +23,7 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
     config := webrtc.Configuration{
       ICEServers: []webrtc.ICEServer{
         {
-          URLs: []string{"stun:0.0.0.0:3478"},
-          // URLs: []string{"stun:stun.l.google.com:19302"},
+          URLs: []string{"stun:stun.l.google.com:19302"},
         },
       },
     }
