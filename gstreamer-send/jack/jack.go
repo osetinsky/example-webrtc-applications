@@ -91,8 +91,8 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
   fmt.Println(signal.Encode(answer))
 
   // Start pushing buffers on these tracks
-  *pipeline = gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc)
-  *pipeline.Start()
+  pipeline = gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc)
+  pipeline.Start()
 
   // Block forever unless shouldTerminate channel sends true
   select {}
