@@ -92,6 +92,7 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
   // Block forever unless shouldTerminate channel sends true
   select {
   case <-shouldTerminate:
+    fmt.Printf("Breaking... \n")
     break
   default:
   }
