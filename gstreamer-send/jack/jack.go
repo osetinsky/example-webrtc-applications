@@ -42,8 +42,7 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
     fmt.Printf("Connection State has changed %s \n", connectionState.String())
     if connectionState.String() == "disconnected" {
       fmt.Printf("Connection State has disconnected. Terminating. \n")
-      // shouldTerminate <- true
-      // break
+      shouldTerminate <- true
       return
     }
   })
@@ -101,6 +100,6 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
   // default:
   // }
 
-  // fmt.Printf("Terminating... \n")
-  // <-shouldTerminate
+  fmt.Printf("Terminating... \n")
+  <-shouldTerminate
 }
