@@ -12,7 +12,7 @@ import (
 )
 
 func StartGstreamer(flagName, browserToken string, ch chan string) {
-  // shouldTerminate := make(chan bool)
+  shouldTerminate := make(chan bool)
 
   // go func() {
   audioSrc := flag.String(flagName, "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
