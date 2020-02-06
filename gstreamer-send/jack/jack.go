@@ -99,6 +99,6 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
   // default:
   // }
 
-  fmt.Printf("Terminating... \n")
-  <-shouldTerminate
+  // fmt.Printf("Terminating... \n")
+  // <-shouldTerminate
 }
