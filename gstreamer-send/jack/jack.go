@@ -12,7 +12,7 @@ import (
 )
 
 func StartGstreamer(flagName, browserToken string, ch chan string) {
-  shouldTerminate := make(chan bool)
+  // shouldTerminate := make(chan bool)
 
   // go func() {
   audioSrc := flag.String(flagName, "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
@@ -42,7 +42,9 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
     fmt.Printf("Connection State has changed %s \n", connectionState.String())
     if connectionState.String() == "disconnected" {
       fmt.Printf("Connection State has disconnected. Terminating. \n")
-      shouldTerminate <- true
+      // shouldTerminate <- true
+      // break
+      return
     }
   })
 
