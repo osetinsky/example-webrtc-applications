@@ -12,8 +12,6 @@ import (
 )
 
 func StartGstreamer(flagName, browserToken string, ch chan string) {
-  shouldTerminate := make(chan bool)
-
   // go func() {
   audioSrc := flag.String(flagName, "jackaudiosrc ! audioconvert ! audioresample", "GStreamer audio src")
   flag.Parse()
@@ -94,6 +92,6 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
   pipeline = gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc)
   pipeline.Start()
 
-  // Block forever unless shouldTerminate channel sends true
+  // Block forever
   select {}
 }
