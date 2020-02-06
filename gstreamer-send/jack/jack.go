@@ -38,12 +38,13 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
   // Set the handler for ICE connection state
   // This will notify you when the peer has connected/disconnected
 
+  var pipeline *gst.Pipeline
+
   peerConnection.OnICEConnectionStateChange(func(connectionState webrtc.ICEConnectionState) {
     fmt.Printf("Connection State has changed %s \n", connectionState.String())
     if connectionState.String() == "disconnected" {
       fmt.Printf("Connection State has disconnected. Terminating. \n")
-      shouldTerminate <- true
-      return
+      pipeline.Stop()
     }
   })
 
@@ -56,6 +57,7 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
   if err != nil {
     panic(err)
   }
+
 
   // Wait for the offer to be pasted
   // offer := webrtc.SessionDescription{}
@@ -89,17 +91,9 @@ func StartGstreamer(flagName, browserToken string, ch chan string) {
   fmt.Println(signal.Encode(answer))
 
   // Start pushing buffers on these tracks
-  gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc).Start()
-  // }()
+  *pipeline = gst.CreatePipeline(webrtc.Opus, []*webrtc.Track{audioTrack}, *audioSrc)
+  *pipeline.Start()
 
   // Block forever unless shouldTerminate channel sends true
-  // select {
-  // case <-shouldTerminate:
-  //   fmt.Printf("Breaking... \n")
-  //   break
-  // default:
-  // }
-
-  fmt.Printf("Terminating... \n")
-  <-shouldTerminate
+  select {}
 }
