@@ -73,6 +73,7 @@ func (p *Pipeline) Start() {
 
 // Stop stops the GStreamer Pipeline
 func (p *Pipeline) Stop() {
+  fmt.Printf("Stopping gstreamer pipeline... \n")
 	C.gstreamer_send_stop_pipeline(p.Pipeline)
 }
 
