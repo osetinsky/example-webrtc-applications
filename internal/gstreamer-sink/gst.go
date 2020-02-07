@@ -9,6 +9,7 @@ package gst
 import "C"
 import (
 	"unsafe"
+  "fmt"
 
 	"github.com/pion/webrtc/v2"
 )
@@ -56,7 +57,8 @@ func (p *Pipeline) Start() {
 
 // Stop stops the GStreamer Pipeline
 func (p *Pipeline) Stop() {
-	C.gstreamer_receive_stop_pipeline(p.Pipeline)
+  fmt.Printf("Stopping gstreamer pipeline... \n")
+  C.gstreamer_receive_stop_pipeline(p.Pipeline)
 }
 
 // Push pushes a buffer on the appsrc of the GStreamer Pipeline
